@@ -2,84 +2,78 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static java.awt.SystemColor.text;
 
 public class MainPage extends BasePage {
+
+    private final By cookie = By.cssSelector("button#cookie-agree");
+    private final By heading = By.cssSelector("#pay-section > div > div > div.col-12.col-xl-8 > section > div > h2");
+    private final By paymentSystems = By.cssSelector("div.pay__partners, footer .partner-list");
+    private final By visa = By.cssSelector("img[alt='Visa'], img[alt='VISA']");
+    private final By visa2 = By.cssSelector("img[alt='Verified By Visa'], img[alt='Visa'], img[alt='VISA']");
+    private final By masterCard = By.cssSelector("img[alt='MasterCard']");
+    private final By masterCardSecureCode = By.cssSelector("img[alt='MasterCard Secure Code'], img[alt='MasterCard']");
+    private final By belCard = By.cssSelector("img[alt='Белкарт'], img[alt='BELKART']");
+    private final By buttonMoreDetailed = By.cssSelector("#pay-section > div > div > div.col-12.col-xl-8 > section > div > a");
+    private final By phone = By.cssSelector("input.phone#connection-phone");
+    private final By sumRub = By.cssSelector("input#connection-sum");
+    private final By buttonNext = By.cssSelector("div.pay__forms form#pay-connection button.button.button__default");
+    private final By phoneNumber = By.cssSelector("input#connection-phone");
+    private final By sum = By.cssSelector("input#connection-sum");
+    private final By email = By.cssSelector("input#connection-email");
+    private final By dropDownButton = By.cssSelector("div.select__wrapper button.select__header");
+    private final By dropDownList = By.cssSelector("ul.select__list");
+    private final By internetPhone = By.cssSelector("input#internet-phone");
+    private final By internetSum = By.cssSelector("input#internet-sum.total_rub");
+    private final By internetEmail = By.cssSelector("input#internet-email");
+    private final By instalmentAccount = By.cssSelector("input#score-instalment");
+    private final By instalmentSum = By.cssSelector("input#instalment-sum");
+    private final By instalmentEmail = By.cssSelector("input#instalment-email");
+    private final By arrearsAccount = By.cssSelector("input#score-arrears");
+    private final By arrearsSum = By.cssSelector("input#arrears-sum");
+    private final By arrearsEmail = By.cssSelector("input#arrears-email");
+    private final By paymentFrame = By.cssSelector("iframe.payment-widget-iframe");
+
     public MainPage(WebDriver driver) {
         super(driver);
     }
 
-    private final By COOKIE = By.cssSelector("button#cookie-agree");
-    private final By HEADING = By.cssSelector("#pay-section > div > div > div.col-12.col-xl-8 > section > div > h2");
-    private final By PAYMENT_SYSTEMS = By.cssSelector("div.pay__partners");
-    private final By VISA = By.cssSelector("div.pay__partners ul li img[alt='Visa'");
-    private final By VISA_2 = By.cssSelector("div.pay__partners ul li img[alt= 'Verified By Visa'");
-    private final By MASTER_CARD = By.cssSelector("div.pay__partners ul li img[alt= 'MasterCard'");
-    private final By MASTER_CARD_SECURE_CODE = By.cssSelector("div.pay__partners ul li img[alt= 'MasterCard Secure Code'");
-    private final By BEL_CARD = By.cssSelector("div.pay__partners ul li img[alt= 'Белкарт'");
-    private final By BUTTON_MORE_DETAILED = By.cssSelector("#pay-section > div > div > div.col-12.col-xl-8 > section > div > a");
-    private final By PHONE = By.cssSelector("input.phone#connection-phone");
-    private final By SUM_RUB = By.cssSelector("input#connection-sum");
-    private final By BUTTON_NEXT = By.cssSelector("div.pay__forms form#pay-connection button.button.button__default ");
-    private final By PHONE_NUMBER = By.cssSelector("input#connection-phone");
-    private final By SUMMA = By.cssSelector("input#connection-sum");
-    private final By EMAIL = By.cssSelector("input#connection-email");
-    private final By BUTTON_DROP_DOWN_LIST = By.cssSelector("div.select__wrapper button.select__header");
-    private final By LIST_DROP_DOWN = By.cssSelector("ul.select__list");
-    private final By INTERNET_NUMBER_PHONE = By.cssSelector("input#internet-phone");
-    private final By SUM_HOME_INTERNET = By.cssSelector("input#internet-sum.total_rub");
-    private final By EMAIL_INTERNET_HOME = By.cssSelector("input#internet-email");
-    private final By ACCOUNTNUMBER = By.cssSelector("input#score-instalment");
-    private final By INSTALMENT_SUM = By.cssSelector("input#instalment-sum");
-    private final By EMAIL_INSTALLMENT_PLAN = By.cssSelector("input#instalment-email");
-    private final By SCORE_ARREARS = By.cssSelector("input#score-arrears");
-    private final By ARREARS_SUM = By.cssSelector("input#arrears-sum");
-    private final By ARREARS_EMAIL = By.cssSelector("input#arrears-email");
-
-    //принять куки
     public MainPage coockiClic() {
-        waitAndClick(COOKIE);
+        if (!driver.findElements(cookie).isEmpty()) {
+            waitAndClick(cookie);
+        }
         return this;
     }
 
-    //заголовок
     public String getHeading() {
-        return waitAndGetText(HEADING);
+        return waitAndGetText(heading);
     }
 
-    //логотипы платежных систем
     public boolean checkPaymentSystems() {
-        return waitForElementIsVisible(PAYMENT_SYSTEMS);
+        return waitForElementIsVisible(paymentSystems);
     }
 
     public boolean checkVisa() {
-        return waitForElementIsVisible(VISA);
+        return waitForElementIsVisible(visa);
     }
 
     public boolean checkVisa2() {
-        return waitForElementIsVisible(VISA_2);
+        return waitForElementIsVisible(visa2);
     }
 
     public boolean checkMasterCard() {
-        return waitForElementIsVisible(MASTER_CARD);
+        return waitForElementIsVisible(masterCard);
     }
 
     public boolean checkMasterCardSecureCode() {
-        return waitForElementIsVisible(MASTER_CARD_SECURE_CODE);
+        return waitForElementIsVisible(masterCardSecureCode);
     }
 
     public boolean checkBelcard() {
-        return waitForElementIsVisible(BEL_CARD);
+        return waitForElementIsVisible(belCard);
     }
 
-
-    //ссылка подробнее о сервисе
     public MainPage clickButtonMoreDetailed() {
-        waitAndClick(BUTTON_MORE_DETAILED);
+        waitAndClick(buttonMoreDetailed);
         return this;
     }
 
@@ -87,107 +81,97 @@ public class MainPage extends BasePage {
         return driver.getCurrentUrl();
     }
 
-    //проверки кнопки продолжить
-    public MainPage numberPhone(String phone) {
-        waitClearAndType(this.PHONE, phone);
+    public MainPage numberPhone(String number) {
+        waitClearAndType(phone, number);
         return this;
     }
 
-    public MainPage rubSum(String sum) {
-        waitClearAndType(this.SUM_RUB, sum);
+    public MainPage rubSum(String amount) {
+        waitClearAndType(sumRub, amount);
         return this;
     }
 
     public MainPage next() {
-        waitAndClick(BUTTON_NEXT);
+        waitAndClick(buttonNext);
         return this;
     }
 
-    //Услуги связи
     public String checkphoneNumber() {
-        return getAttribute(PHONE_NUMBER, "placeholder");
+        return getAttribute(phoneNumber, "placeholder");
     }
 
     public String checkSumma() {
-        return getAttribute(SUMMA, "placeholder");
+        return getAttribute(sum, "placeholder");
     }
 
     public String checkEmail() {
-        return getAttribute(EMAIL, "placeholder");
+        return getAttribute(email, "placeholder");
     }
 
-    //кнопка выпадающего списка
     public MainPage clickButtonDropDownList() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_DROP_DOWN_LIST));
-        waitAndClick(BUTTON_DROP_DOWN_LIST);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(dropDownButton));
+        waitAndClick(dropDownButton);
         return this;
     }
 
-    //метод для нажатия на кнопку по тексту
     public MainPage selectByText(String text) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_DROP_DOWN_LIST));
-        waitAndClick(BUTTON_DROP_DOWN_LIST);
-        By liLocator = By.xpath("//li[contains(@class,'select__item') and .//p[contains(text(),'" + text + "')]]");
-        wait.until(ExpectedConditions.elementToBeClickable(liLocator));
-        waitAndClick(liLocator);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(dropDownButton));
+        waitAndClick(dropDownButton);
+        By item = By.xpath("//li[contains(@class,'select__item') and .//p[contains(text(),'" + text + "')]]");
+        wait.until(ExpectedConditions.elementToBeClickable(item));
+        waitAndClick(item);
         return this;
     }
 
     public MainPage clickButtonByNumber(int number) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(BUTTON_DROP_DOWN_LIST));
-        waitAndClick(BUTTON_DROP_DOWN_LIST);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(LIST_DROP_DOWN));
-        By liLocator = By.cssSelector("li.select__item:nth-child(" + number + ")");
-        wait.until(ExpectedConditions.elementToBeClickable(liLocator));
-        waitAndClick(liLocator);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(dropDownButton));
+        waitAndClick(dropDownButton);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(dropDownList));
+        By item = By.cssSelector("li.select__item:nth-child(" + number + ")");
+        wait.until(ExpectedConditions.elementToBeClickable(item));
+        waitAndClick(item);
         return this;
     }
 
-    //домашний интернет
     public String getinternetNumberPhone() {
-        return getAttribute(INTERNET_NUMBER_PHONE, "placeholder");
+        return getAttribute(internetPhone, "placeholder");
     }
 
     public String getSumHomeInternet() {
-        return getAttribute(SUM_HOME_INTERNET, "placeholder");
+        return getAttribute(internetSum, "placeholder");
     }
 
     public String getEmailInternetHome() {
-        return getAttribute(EMAIL_INTERNET_HOME, "placeholder");
+        return getAttribute(internetEmail, "placeholder");
     }
 
-    //рассрочка
     public String getAccountNumber() {
-        return getAttribute(ACCOUNTNUMBER, "placeholder");
+        return getAttribute(instalmentAccount, "placeholder");
     }
 
     public String getInstalmentSum() {
-        return getAttribute(INSTALMENT_SUM, "placeholder");
+        return getAttribute(instalmentSum, "placeholder");
     }
 
     public String getEmailInstallmentPlan() {
-        return getAttribute(EMAIL_INSTALLMENT_PLAN, "placeholder");
+        return getAttribute(instalmentEmail, "placeholder");
     }
 
-    //задолженность
     public String getScoreArrears() {
-        return getAttribute(SCORE_ARREARS, "placeholder");
+        return getAttribute(arrearsAccount, "placeholder");
     }
 
     public String getArrearsSum() {
-        return getAttribute(ARREARS_SUM, "placeholder");
+        return getAttribute(arrearsSum, "placeholder");
     }
 
     public String getArrearsEmail() {
-        return getAttribute(ARREARS_EMAIL, "placeholder");
+        return getAttribute(arrearsEmail, "placeholder");
     }
-    //iframe
 
-    // переход в iframe
     public PaymentFramePage switchToPaymentFrame() {
-        WebElement iframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("iframe.payment-widget-iframe")));
-        driver.switchTo().frame(iframe);
+        WebElement frame = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentFrame));
+        driver.switchTo().frame(frame);
         return new PaymentFramePage(driver);
     }
 }
-

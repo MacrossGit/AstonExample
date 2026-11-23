@@ -1,12 +1,11 @@
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.support.ui.ExpectedConditions;
+//import org.openqa.selenium.support.ui.WebDriverWait;
+//
+//import java.time.Duration;
 
 
 public class TestMts extends BaseTest {
@@ -96,7 +95,7 @@ public class TestMts extends BaseTest {
                 .next();
         Assert.assertEquals(phoneNumber, driver.findElement(By.cssSelector("#connection-phone")).getAttribute("value"));
         Assert.assertEquals(rub, driver.findElement(By.cssSelector("#connection-sum")).getAttribute("value"));
-        Assert.assertTrue(driver.findElements(By.tagName("iframe")).size() > 0);
+        Assert.assertTrue(!driver.findElements(By.tagName("iframe")).isEmpty());
     }
 
     //ДЗ 2.10
